@@ -9,8 +9,9 @@ const Input = ({label, name, value, error, onChange, type='text'}) => {
           name={name}
           value={value}
           onChange={onChange}
-          className={``} 
+          className={`mt-1 block w-full px-3 py-2 border ${error ? 'border-red-800': 'border-gray-300'}`} 
         />
+        {error && <p className='mt-1 text-red-800'>{error}</p>}
     </div>
   )
 }
