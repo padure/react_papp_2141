@@ -34,7 +34,13 @@ const Form = () => {
       });
     }
   }
-
+  const listProducts = products.map((product, id) => <tr key={id}>
+      <td>{id + 1}</td>
+      <td>{product.name}</td>
+      <td>{product.price}</td>
+      <td>{product.description}</td>
+    </tr>
+  );
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -65,8 +71,20 @@ const Form = () => {
           Trimite
         </button>
       </form>
+      <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nume</th>
+              <th>Pret</th>
+              <th>Descriere</th>
+            </tr>
+          </thead>
+          <tbody>
+            {listProducts}
+          </tbody>
+      </table>
     </>
-
   )
 }
 
