@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
     fetchProducts
 } from '@/services/product/productService.js';
@@ -10,10 +11,13 @@ const ProductsList = () => {
         fetchProducts().then(result => setProducts([...result.products]));
     });
     const listData = products.map(product => (
-        <div key={product.id} 
-             className='shadow shadow-cyan-200 p-3 rounded-md hover:bg-gradient-to-t from-cyan-200 h-auto hover:cursor-pointer'>
+        <Link 
+            key={product.id} 
+            className='shadow shadow-cyan-200 p-3 rounded-md hover:bg-gradient-to-t from-cyan-200 h-auto hover:cursor-pointer'
+            to={`/products/${product.id}`}
+        >
             <Product key={product.id} {...product} />
-        </div>));
+        </Link>));
     return (
         <>
             <h4 className='text-2xl font-bold text-center pt-12 pb-2'>Lista produselor</h4>
