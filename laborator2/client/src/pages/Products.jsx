@@ -13,9 +13,11 @@ const Products = () => {
             {products.map(product => (
                 <div 
                     key={product.id} 
-                    className='shadow shadow-lime-100 p-4 hover:bg-gradient-to-r hover:from-lime-50 hover:cursor-pointer'>
-                    <h5 className='font-bold text-lime-800'>{product.name}</h5>
-                    <p className='font-semibold text-lime-700 text-sm'>{product.description}</p>
+                    className='flex flex-col justify-between shadow shadow-lime-100 p-4 hover:bg-gradient-to-r hover:from-lime-50 hover:cursor-pointer'>
+                    <div>
+                        <h5 className='font-bold text-lime-800'>{product.name}</h5>
+                        <p className='font-semibold text-lime-700 text-sm'>{product.description}</p>
+                    </div>
                     <p className='font-bold'>Price: {product.price}</p>
                 </div>
             ))}
