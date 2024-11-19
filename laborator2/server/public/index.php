@@ -10,7 +10,7 @@
     $capsule->setAsGlobal();
     $capsule->bootEloquent();
     $app = AppFactory::create();
-    //Middleware
+    // Middleware
     $app->addRoutingMiddleware();
     $appMiddleware = new AppMiddleware($app);
     $appMiddleware->addErrorHandling();

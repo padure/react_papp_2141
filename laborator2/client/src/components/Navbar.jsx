@@ -14,6 +14,11 @@ const Navbar = () => {
           className='py-2 px-3 rounded-md my-3 text-white transition duration-500 hover:bg-lime-700'>
             Products
         </Link>
+        <Link 
+          to='/new-product' 
+          className='py-2 px-3 rounded-md my-3 text-white transition duration-500 hover:bg-lime-700'>
+            New Product
+        </Link>
     </nav>
   )
 }

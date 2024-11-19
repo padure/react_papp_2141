@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
@@ -12,7 +13,8 @@ class ProductController
     {
         $products = Product::all();
         $response->getBody()->write(json_encode($products));
-        return $response->withHeader('Content-Type', 'application/json')
+        return $response
+            ->withHeader('Content-Type', 'application/json')
             ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
     }
 
@@ -25,16 +27,21 @@ class ProductController
             return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
         }
         $response->getBody()->write(json_encode($product));
-        return $response->withHeader('Content-Type', 'application/json');
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
     }
 
     // Crearea unui produs nou
     public function create(Request $request, Response $response)
     {
+        //Add CORS to request 
         $data = $request->getParsedBody();
         $product = Product::create($data);
         $response->getBody()->write(json_encode($product));
-        return $response->withHeader('Content-Type', 'application/json');
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
     }
 
     // Actualizarea unui produs existent
@@ -58,7 +65,9 @@ class ProductController
         $product->save();
 
         $response->getBody()->write(json_encode($product));
-        return $response->withHeader('Content-Type', 'application/json');
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
     }
 
     // Ștergerea unui produs
@@ -67,11 +76,13 @@ class ProductController
         $product = Product::find($args['id']);
         if (!$product) {
             $response->getBody()->write(json_encode(['error' => 'Produsul nu a fost găsit.']));
-            return $response->withStatus(404)->withHeader('Content-Type', 'application/json');
+            return $response->withStatus(404)
+                ->withHeader('Content-Type', 'application/json');
         }
-
         $product->delete();
         $response->getBody()->write(json_encode(['message' => 'Produs șters cu succes']));
-        return $response->withHeader('Content-Type', 'application/json');
+        return $response
+            ->withHeader('Content-Type', 'application/json')
+            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
     }
 }
