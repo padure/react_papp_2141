@@ -17,10 +17,8 @@ class AppMiddleware
 
     public function addErrorHandling()
     {
-        // Configurare ErrorMiddleware pentru gestionarea erorilor 404
         $errorMiddleware = $this->app->addErrorMiddleware(true, true, true);
 
-        // Personalizarea răspunsului pentru eroarea 404
         $errorMiddleware->setErrorHandler(
             HttpNotFoundException::class,
             function (Request $request, HttpNotFoundException $exception, bool $displayErrorDetails) {

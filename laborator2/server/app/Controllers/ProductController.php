@@ -14,8 +14,7 @@ class ProductController
         $products = Product::all();
         $response->getBody()->write(json_encode($products));
         return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+            ->withHeader('Content-Type', 'application/json');
     }
 
     // Afișarea unui produs specific
@@ -28,20 +27,16 @@ class ProductController
         }
         $response->getBody()->write(json_encode($product));
         return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+            ->withHeader('Content-Type', 'application/json');
     }
 
     // Crearea unui produs nou
     public function create(Request $request, Response $response)
     {
-        //Add CORS to request 
-        $data = $request->getParsedBody();
+        $data = json_decode($request->getBody()->getContents(), true);
         $product = Product::create($data);
         $response->getBody()->write(json_encode($product));
-        return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+        return $response->withHeader('Content-Type', 'application/json');
     }
 
     // Actualizarea unui produs existent
@@ -66,8 +61,7 @@ class ProductController
 
         $response->getBody()->write(json_encode($product));
         return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+            ->withHeader('Content-Type', 'application/json');
     }
 
     // Ștergerea unui produs
@@ -82,7 +76,6 @@ class ProductController
         $product->delete();
         $response->getBody()->write(json_encode(['message' => 'Produs șters cu succes']));
         return $response
-            ->withHeader('Content-Type', 'application/json')
-            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173');
+            ->withHeader('Content-Type', 'application/json');
     }
 }
