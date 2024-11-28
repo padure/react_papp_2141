@@ -58,7 +58,7 @@ const EditProduct = () => {
           className="w-full max-w-md bg-lime-100 rounded-lg shadow-md p-6 my-32"
         >
           <h5 className="text-2xl text-gray-800 font-bold mb-6 text-center font-mono">
-            Add New Product
+            {name}
           </h5>
           <div className="mb-4">
             <label
