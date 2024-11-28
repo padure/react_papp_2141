@@ -36,3 +36,14 @@ export const createProduct = async (product) => {
     }
     return response.json();
 };
+export const updateProduct = async (product) => {
+    const response = await fetch(`${API_BASE_URL}/${product.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
+    });
+    if (!response.ok) {
+        throw new Error(`Server error: ${response.statusText}`);
+    }
+    return response.json();
+};
