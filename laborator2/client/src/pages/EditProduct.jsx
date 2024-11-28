@@ -85,15 +85,15 @@ const EditProduct = () => {
             >
               Description
             </label>
-            <input
-              type="text"
+            <textarea
+              onChange={(e) => setDescription(e.target.value)} 
               name="description"
               id="description"
-              placeholder="Description"
+              rows={5}
               className="bg-lime-50 w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-lime-500 focus:border-lime-500"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-            />
+            >
+              {description}
+            </textarea>
           </div>
           <div className="mb-4">
             <label
