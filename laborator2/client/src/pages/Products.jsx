@@ -1,12 +1,17 @@
-import { FaRegTrashCan } from "react-icons/fa6";
-import { 
-    useState, 
-    useEffect 
+import {
+    FaRegTrashCan,
+    FaPenToSquare
+} from "react-icons/fa6";
+import {
+    useState,
+    useEffect
 } from 'react';
-import { 
-    fetchProducts, 
-    deleteProductById 
+import {
+    fetchProducts,
+    deleteProductById
 } from '../services/apiProductService.js';
+
+import { Link } from 'react-router-dom';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
@@ -56,8 +61,8 @@ const Products = () => {
             ) : (
                 <div className='grid grid-cols-6 gap-4'>
                     {products.map(product => (
-                        <div 
-                            key={product.id} 
+                        <div
+                            key={product.id}
                             className='flex flex-col justify-between shadow shadow-lime-100 p-4 hover:bg-gradient-to-r hover:from-lime-50 hover:cursor-pointer min-h-52'>
                             <div>
                                 <h5 className='font-bold text-lime-800'>{product.name}</h5>
@@ -65,10 +70,17 @@ const Products = () => {
                             </div>
                             <div className='flex items-center justify-between'>
                                 <p className='font-bold'>Price: {product.price}</p>
-                                <FaRegTrashCan 
-                                    className='text-red-600' 
-                                    onClick={() => openDeleteModal(product.id)}  
-                                />
+                                <div className="flex gap-1">
+                                    <Link to={`/products/${product.id}/edit`}>
+                                        <FaPenToSquare
+                                            className='text-yellow-600'
+                                        />
+                                    </Link>
+                                    <FaRegTrashCan
+                                        className='text-red-600'
+                                        onClick={() => openDeleteModal(product.id)}
+                                    />
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -81,13 +93,13 @@ const Products = () => {
                         <h3 className="text-lg font-bold mb-4 text-center">Confirm Delete</h3>
                         <p>Ești sigur?</p>
                         <div className="mt-4 flex justify-between">
-                            <button 
+                            <button
                                 className="bg-gray-300 px-4 py-2 rounded hover:bg-gray-400"
                                 onClick={() => setShowModal(false)}
                             >
                                 Nu
                             </button>
-                            <button 
+                            <button
                                 className="bg-red-700 text-white px-4 py-2 rounded hover:bg-red-600"
                                 onClick={confirmDelete}
                             >
