@@ -1,4 +1,6 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import axiosClient from './axiosClient.js';
+import { v4 as uuidv4 } from 'uuid';
 
 const Form = () => {
     const nameRef = useRef(null);
@@ -6,6 +8,14 @@ const Form = () => {
     const ageRef = useRef(null);
 
     const [employees, setEmployees] = useState([]);
+
+    useEffect(()=>{
+        axiosClient
+            .get('/employees')
+            .then(({data})=>setEmployees(data))
+            .catch(()=>{})
+    }, []);
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         const name = nameRef.current.value;
@@ -15,7 +25,10 @@ const Form = () => {
             ...prevData,
             {name, email, age}
         ]);
-        
+        //Save in JSON
+        axiosClient.post('/employees', {
+            id: uuidv4(), name, email, age
+        });
         nameRef.current.value = '';
         emailRef.current.value = '';
         ageRef.current.value = '';
@@ -47,8 +60,8 @@ const Form = () => {
             {
                 employees.length > 0 ? (
                     <ul>
-                        {employees.map((data, index) => (
-                            <li key={index}
+                        {employees.map(data => (
+                            <li key={data.id}
                                 className='p-2 border mb-1'
                             >
                                 <b>Name:</b> {data.name} <br />

@@ -1,0 +1,22 @@
+{
+  "employees": [
+    {
+      "id": "d9a641c0-f4ff-455d-b72b-38fd4cd9efe2",
+      "name": "PĂDURE GHEORGHE",
+      "email": "gheorghe.padure@profesor.cihcahul.md",
+      "age": "23"
+    },
+    {
+      "id": "498da7e5-2e7c-4dcd-b4af-9fc1aef37442",
+      "name": "John Doe",
+      "email": "jd@gmail.com",
+      "age": "87"
+    },
+    {
+      "id": "bc988bbb-f7f7-4b59-aa87-ea6ab77b0e2f",
+      "name": "Will Doe",
+      "email": "wd@gmail.com",
+      "age": "47"
+    }
+  ]
+}
